@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    signup: function (req, res, next) {
+    signup: (req, res, next) => {
         User.find({email: req.body.email}).exec()
         .then(user => {
             if(user.length >= 1) {
@@ -81,7 +81,8 @@ module.exports = {
                 if(result) {
                     const token = jwt.sign({
                         email: user[0].email,
-                        userId: user[0]._id
+                        userId: user[0]._id,
+                        role: user[0].role
                     }, process.env.JWT_KEY, {
                         expiresIn: '1h'
                     });

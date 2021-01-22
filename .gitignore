@@ -1,2 +1,5 @@
 nodemon.json
 node_modules
+*.jpg
+*.jpeg
+*.png

@@ -25,9 +25,12 @@ mongoose.connect('mongodb://localhost:27017/shopee', {
 var app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(logger('dev'));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static('uploads'));
 
 //setting up CORS headers
 app.use((req, res, next) => {
